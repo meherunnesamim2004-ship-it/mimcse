@@ -1,0 +1,301 @@
+@charset "UTF-8";
+/**
+ * Flexy Breadcrumb Front-end Core CSS File - V 1.3.0
+ *
+ * @author PressTigers <support@presstigers.com>
+ * @since  1.0.0
+ * @since  1.3.0 Modernized with CSS Flexbox, RTL support, theme font inheritance, and accessibility.
+ */
+
+/* ==========================================================================
+   1. Reset & Wrapper
+   ========================================================================== */
+
+nav.fbc-page,
+.fbc-page {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 15px 0;
+}
+
+nav.fbc-page *,
+.fbc-page * {
+    box-sizing: border-box;
+}
+
+.fbc-page .fbc-wrap {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   2. Breadcrumb Items List (Modern Flexbox)
+   ========================================================================== */
+
+.fbc-page .fbc-wrap .fbc-items {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #edeff0;
+    max-width: 100%;
+}
+
+.fbc-page .fbc-wrap .fbc-items li {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 2px 0;
+    line-height: inherit;
+}
+
+/* ==========================================================================
+   3. Links, Icons & Active Items
+   ========================================================================== */
+
+.fbc-page .fbc-wrap .fbc-items li a {
+    color: #337ab7;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.fbc-page .fbc-wrap .fbc-items li a:hover,
+.fbc-page .fbc-wrap .fbc-items li a:focus {
+    text-decoration: underline;
+}
+
+.fbc-page .fbc-wrap .fbc-items li a i,
+.fbc-page .fbc-wrap .fbc-items li i {
+    margin-right: 6px;
+    vertical-align: middle;
+    font-size: 0.95em;
+}
+
+.fbc-page .fbc-wrap .fbc-items li.active,
+.fbc-page .fbc-wrap .fbc-items li.active a,
+.fbc-page .fbc-wrap .fbc-items li.active span {
+    color: #27272a;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   4. Separator
+   ========================================================================== */
+
+.fbc-page .fbc-wrap .fbc-items li .fbc-separator {
+    display: inline-block;
+    color: #cccccc;
+    margin: 0 8px;
+    line-height: 1;
+    font-style: normal;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* ==========================================================================
+   5. Clearfix Compatibility
+   ========================================================================== */
+
+.fbc-page .clearfix::before,
+.fbc-page .clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.fbc-page .clearfix::after {
+    clear: both;
+}
+
+/* ==========================================================================
+   6. RTL (Right-to-Left) Support
+   ========================================================================== */
+
+body.rtl nav.fbc-page,
+body.rtl .fbc-page,
+html.translated-rtl nav.fbc-page,
+html.translated-rtl .fbc-page,
+html:has(.gt-current-lang[data-gt-lang="ar"]) nav.fbc-page,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page,
+html:has(.gt-current-lang[data-gt-lang="he"]) nav.fbc-page,
+html:has(.gt-current-lang[data-gt-lang="he"]) .fbc-page,
+html:has(.gt-current-lang[data-gt-lang="fa"]) nav.fbc-page,
+html:has(.gt-current-lang[data-gt-lang="fa"]) .fbc-page,
+html:has(.gt-current-lang[data-gt-lang="ur"]) nav.fbc-page,
+html:has(.gt-current-lang[data-gt-lang="ur"]) .fbc-page,
+html:has(.gt-current-wrapper [data-gt-lang="ar"]) nav.fbc-page,
+html:has(.gt-current-wrapper [data-gt-lang="ar"]) .fbc-page,
+[dir="rtl"] nav.fbc-page,
+[dir="rtl"] .fbc-page,
+nav.fbc-page[dir="rtl"],
+.fbc-page[dir="rtl"],
+.fbc-page.fbc-rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+body.rtl .fbc-page .fbc-wrap,
+html.translated-rtl .fbc-page .fbc-wrap,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap,
+html:has(.gt-current-lang[data-gt-lang="he"]) .fbc-page .fbc-wrap,
+html:has(.gt-current-lang[data-gt-lang="fa"]) .fbc-page .fbc-wrap,
+html:has(.gt-current-lang[data-gt-lang="ur"]) .fbc-page .fbc-wrap,
+html:has(.gt-current-wrapper [data-gt-lang="ar"]) .fbc-page .fbc-wrap,
+[dir="rtl"] .fbc-page .fbc-wrap,
+.fbc-page[dir="rtl"] .fbc-wrap,
+.fbc-page.fbc-rtl .fbc-wrap {
+    direction: rtl;
+    text-align: right;
+}
+
+body.rtl .fbc-page .fbc-wrap .fbc-items,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items,
+html:has(.gt-current-lang[data-gt-lang="he"]) .fbc-page .fbc-wrap .fbc-items,
+html:has(.gt-current-lang[data-gt-lang="fa"]) .fbc-page .fbc-wrap .fbc-items,
+html:has(.gt-current-lang[data-gt-lang="ur"]) .fbc-page .fbc-wrap .fbc-items,
+html:has(.gt-current-wrapper [data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items {
+    direction: rtl;
+    text-align: right;
+    justify-content: flex-start;
+}
+
+body.rtl .fbc-page .fbc-wrap .fbc-items li,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li {
+    direction: rtl;
+}
+
+body.rtl .fbc-page .fbc-wrap .fbc-items li a,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li a,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li a,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li a,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li a,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li a {
+    direction: rtl;
+}
+
+body.rtl .fbc-page .fbc-wrap .fbc-items li a i,
+body.rtl .fbc-page .fbc-wrap .fbc-items li i,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li a i,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li i,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li a i,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li i,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li a i,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li i,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li a i,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li i,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li a i,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li i {
+    margin-right: 0;
+    margin-left: 6px;
+}
+
+body.rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li .fbc-separator,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li .fbc-separator,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li .fbc-separator,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li .fbc-separator {
+    margin: 0 8px;
+}
+
+/* Mirror right-pointing arrow/chevron separators in RTL */
+body.rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-angle-right,
+body.rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-chevron-right,
+body.rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-arrow-right,
+body.rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-caret-right,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-angle-right,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-chevron-right,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-arrow-right,
+html.translated-rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-caret-right,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-angle-right,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-chevron-right,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-arrow-right,
+html:has(.gt-current-lang[data-gt-lang="ar"]) .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-caret-right,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-angle-right,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-chevron-right,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-arrow-right,
+[dir="rtl"] .fbc-page .fbc-wrap .fbc-items li .fbc-separator .fa-caret-right,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li .fbc-separator .fa-angle-right,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li .fbc-separator .fa-chevron-right,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li .fbc-separator .fa-arrow-right,
+.fbc-page[dir="rtl"] .fbc-wrap .fbc-items li .fbc-separator .fa-caret-right,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li .fbc-separator .fa-angle-right,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li .fbc-separator .fa-chevron-right,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li .fbc-separator .fa-arrow-right,
+.fbc-page.fbc-rtl .fbc-wrap .fbc-items li .fbc-separator .fa-caret-right {
+    display: inline-block;
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+/* ==========================================================================
+   7. Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .fbc-page .fbc-wrap .fbc-items {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .fbc-page .fbc-wrap .fbc-items li .fbc-separator {
+        margin: 0 6px;
+    }
+
+    body.rtl .fbc-page .fbc-wrap .fbc-items li .fbc-separator,
+    [dir="rtl"] .fbc-page .fbc-wrap .fbc-items li .fbc-separator,
+    .fbc-page[dir="rtl"] .fbc-wrap .fbc-items li .fbc-separator,
+    .fbc-page.fbc-rtl .fbc-wrap .fbc-items li .fbc-separator {
+        margin: 0 6px;
+    }
+}
+
+/* ==========================================================================
+   8. Accessibility (Screen Reader Text)
+   ========================================================================== */
+
+.fbc-page .screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}

@@ -1,0 +1,123 @@
+/**
+ * Flexy Breadcrumb Front-end Script
+ *
+ * Automatically detects dynamic client-side RTL translation (such as GTranslate,
+ * Google Translate, Weglot, or TranslatePress) and toggles RTL classes and attributes.
+ *
+ * @package Flexy_Breadcrumb
+ * @since   1.0.0
+ * @since   1.3.1 Added automatic client-side RTL detection for translation plugins.
+ */
+(function() {
+    'use strict';
+
+    var rtlLanguages = ['ar', 'he', 'iw', 'fa', 'ur', 'ps', 'sd', 'ug', 'yi'];
+
+    function isRtlLanguage(lang) {
+        if (!lang) {
+            return false;
+        }
+        lang = String(lang).toLowerCase().split('-')[0].trim();
+        return rtlLanguages.indexOf(lang) !== -1;
+    }
+
+    function checkRTL() {
+        var isRtl = false;
+        var html = document.documentElement;
+
+        // 1. Google Translate class on <html>
+        if (html && (html.classList.contains('translated-rtl') || html.getAttribute('dir') === 'rtl')) {
+            isRtl = true;
+        }
+
+        // 2. Standard WordPress body class or dir attribute
+        if (!isRtl && document.body && (document.body.classList.contains('rtl') || document.body.getAttribute('dir') === 'rtl')) {
+            isRtl = true;
+        }
+
+        // 3. GTranslate / Google Translate cookie (e.g. googtrans=/en/ar or googtrans=/auto/ar)
+        if (!isRtl) {
+            var match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
+            if (match && match[1]) {
+                var lang = match[1].split('/').pop();
+                if (isRtlLanguage(lang)) {
+                    isRtl = true;
+                }
+            }
+        }
+
+        // 4. GTranslate active language in the DOM
+        if (!isRtl) {
+            var gtActive = document.querySelector('.gt-current-lang[data-gt-lang], .gt-current-wrapper[data-gt-lang]');
+            if (gtActive) {
+                var gtLang = gtActive.getAttribute('data-gt-lang');
+                if (isRtlLanguage(gtLang)) {
+                    isRtl = true;
+                }
+            }
+        }
+
+        // Apply or remove fbc-rtl and dir="rtl" on all breadcrumb navigation elements
+        var breadcrumbs = document.querySelectorAll('nav.fbc-page, .fbc-page');
+        for (var i = 0; i < breadcrumbs.length; i++) {
+            var el = breadcrumbs[i];
+            if (isRtl) {
+                if (!el.classList.contains('fbc-rtl')) {
+                    el.classList.add('fbc-rtl');
+                }
+                if (el.getAttribute('dir') !== 'rtl') {
+                    el.setAttribute('dir', 'rtl');
+                }
+            } else {
+                // If it was dynamically added by this script, remove it
+                if (!el.hasAttribute('data-server-rtl')) {
+                    el.classList.remove('fbc-rtl');
+                    if (el.getAttribute('dir') === 'rtl') {
+                        el.removeAttribute('dir');
+                    }
+                }
+            }
+        }
+    }
+
+    // Run on initial load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkRTL);
+    } else {
+        checkRTL();
+    }
+
+    // Observe changes to <html> (when Google Translate adds or removes 'translated-rtl')
+    if (window.MutationObserver) {
+        var observer = new MutationObserver(function() {
+            checkRTL();
+        });
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class', 'dir', 'lang']
+        });
+        if (document.body) {
+            observer.observe(document.body, {
+                attributes: true,
+                attributeFilter: ['class', 'dir']
+            });
+        }
+    }
+
+    // Listen for GTranslate language clicks or select changes
+    document.addEventListener('click', function(e) {
+        var target = e.target && e.target.closest && e.target.closest('[data-gt-lang], .glink, .goog-te-combo');
+        if (target) {
+            setTimeout(checkRTL, 200);
+            setTimeout(checkRTL, 600);
+            setTimeout(checkRTL, 1200);
+        }
+    });
+
+    document.addEventListener('change', function(e) {
+        if (e.target && e.target.classList && e.target.classList.contains('goog-te-combo')) {
+            setTimeout(checkRTL, 200);
+            setTimeout(checkRTL, 600);
+        }
+    });
+})();
